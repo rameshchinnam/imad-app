@@ -5,14 +5,30 @@
     </head>
     <body>
         <div class="center">
-            <img src="/ui/madi.png" class="img-medium"/>
+            <img id="madi" src="/ui/madi.png" class="img-medium"/>
         </div>
         <br>
         <div class="center text-big bold">
             Hi! This is RC. I am just wetting my feet.
-            <h4>Deployed locally to make this change</h4>
+        </div>   
+        <hr/> 
+       <!-- <div> 
+            ** Deployed locally to make this change **
+        </div>-->
+        <h4> Articles: </h4>
+        <br/>
+        <div> <a href="/article-one">Article One</a> </div> 
+        <div> <a href="/article-two">Article Two</a> </div>
+        <div> <a href="/article-three">Article Three</a> </div>
+        <div class="footer">
+          This button <button id="counter">Click me!</button> has been clicked <span id="counterText">0</span> times.
         </div>
-        <script type="text/javascript" src="/ui/main.js">
-        </script>
+        <br/>
+        <hr/>
+        <input type="text" id="inputName" placehoder="name"></input>
+        <input type="submit" id="submit" value="submit"></input>
+        </hr/>
+        <ul id ='nameList'></ul>
+        <script type="text/javascript" src="/ui/main.js"> </script>
     </body>
 </html>

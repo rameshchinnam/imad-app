@@ -58,6 +58,13 @@ var htmlTemplate = `
  <h3> ${heading} </h3>
  <div> ${date} </div>
  <div> ${content} </div>
+ <hr/>
+ <div> Enter your comment below and click submit </div>
+ <div> <textarea rows="4" cols ="50"  id="Comment"> </textarea>
+ <div> <input type="submit" id="submitComment"> </input>
+ <br/>
+ <div> <u><h5> Comments: </h5></u> </div>
+ <ul id="commentsList"></ul>
 </body>
 </html>
 `;
@@ -66,6 +73,21 @@ return htmlTemplate;
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
+
+var counter = 0;
+app.get('/counter', function(req, res){
+counter = counter + 1;
+res.send(counter.toString());
+});
+
+var names = [];
+//app.get('/submit-name/:name', function(req,res){
+app.get('/submit-name', function(req,res){
+//var name = req.params.name;
+var name = req.query.name;
+names.push(name);
+res.send(JSON.stringify(names));
 });
 
 app.get('/:articleName', function (req, res) {
@@ -84,8 +106,6 @@ app.get('/article-two', function (req, res) {
 app.get('/article-three', function (req, res) {
   res.send('article-three is requested');
 });
-
-
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
