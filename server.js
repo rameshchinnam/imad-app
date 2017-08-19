@@ -14,7 +14,7 @@ content: `
  <div> <p> This is the content for Article one. </p>
        <p> Additional Text </p>
  </div>
-`
+` 
 },
 'article-two': {
 title: 'Article Two | RC',

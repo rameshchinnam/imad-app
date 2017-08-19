@@ -1,58 +1,34 @@
-console.log('Loaded!');
-//alert('This is from Clientside Java Script.');
-var img = document.getElementById('madi');
-var marginLeft = 0;
-function moveRight(){
-marginLeft = marginLeft + 1;
-img.style.marginLeft = marginLeft + 'px';
-};
-
-img.onclick = function() {
-var interval = setInterval(moveRight, 50);
-};
-
-var button = document.getElementById('counter');
+console.log("Client-Side Java Script Begin");
+var counterBtn = document.getElementById("counter");
+var submitBtn = document.getElementById("submit");
 var counter = 0;
-
-button.onclick = function(){
- //var counterText = document.getElementById('counterText');
- //counter = counter + 1;
- //counterText.innerHTML = counter.toString();
- var req = new XMLHttpRequest();
- req.onreadystatechange = function(){
-  if (req.readyState === XMLHttpRequest.DONE){
-   if (req.status === 200){
-    counter = req.responseText;
-    var counterText = document.getElementById('counterText');
-    counterText.innerHTML = counter.toString();
-   }
-  }
- };
- req.open('GET', 'http://localhost:8080/counter', true);
- req.send(null);
+counterBtn.onclick = function(){
+counter = counter + 1;
+document.getElementById("counterText").innerHTML = counter.toString();
 };
-
-var inputName = document.getElementById('inputName');
-//var name = inputName.value;
-var submit = document.getElementById('submit');
-submit.onclick = function(){
- var name = inputName.value;
- var req = new XMLHttpRequest();
- req.onreadystatechange = function(){
-  if (req.readyState === XMLHttpRequest.DONE){
-   if (req.status === 200){
-    var names = req.responseText;
-    var names = JSON.parse(names);
-    var nameList = document.getElementById('nameList');
-    var list = '';
-    for (var i = 0; i<names.length; i++){
-     list += '<li>' + names[i] + '</li>';
+var names = '';
+submitBtn.onclick = function(){
+/*names = '<li>'+document.getElementById("inputName").value+'</li>';
+document.getElementById("nameList").innerHTML=document.getElementById("nameList").innerHTML+names;*/
+var request = new XMLHttpRequest();
+request.onreadystatechange = function(){
+  if (request.readyState === XMLHttpRequest.DONE)
+  {
+   if (request.status === 200)
+   {
+    var names = request.responseText;
+    names = JSON.parse(names);
+    var nameList = '';
+    for(i=0; i<names.length; i=i+1)
+    {
+     nameList=nameList+'<li>'+names[i]+'</li>';
     }
-    nameList.innerHTML = list;
+    document.getElementById("nameList").innerHTML=nameList;
    }
   }
- };
- //req.open('GET', 'http://localhost:8080/submit-name/'+name, true);
-req.open('GET', 'http://localhost:8080/submit-name/?name='+name, true); 
-req.send(null);
 };
+request.open('GET', 'http://localhost:8080/submit-name/?name=' + document.getElementById("inputName").value, true);
+request.send(null);
+};
+console.log("Client-Side Java Script End");
+
